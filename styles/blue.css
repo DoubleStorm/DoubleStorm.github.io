@@ -1,0 +1,23 @@
+.blue{
+    background-color: white;
+}
+.blue .additionalMethod{
+    background-color: rgb(71, 121, 230);
+}
+.blue .additionalMethod::after{
+    border-right-color: rgba(116, 160, 253, 0.541);
+}
+.blue .additionalMethod .MP3player{
+    background-color:rgb(71, 121, 230);
+    background-image: url(../asset/img/music-cyan.png);
+    box-shadow: 0 0 0 5px blue inset;
+}
+.blue .additionalMethod .styleSelect{
+    background-color: rgb(124, 158, 233);
+}
+.blue .additionalMethod .styleSelect:hover{
+    background-color: rgb(13, 30, 66);
+}
+.blue .additionalMethod h1.pageTitle{
+    color: rgb(223, 255, 253);
+}

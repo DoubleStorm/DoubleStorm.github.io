@@ -4,189 +4,45 @@
 	<meta charset="utf-8" />
 	<title>这就是何沁</title>
 	<link rel="Shortcut Icon" href="./asset/img/ICON-s.png">  
-	<link rel="Bookmark" href="./asset/img/ICON-s.png">
+	<link rel="Bookmark" href="./asset/img/ICON-s.png">	
 	<style>
 		body{
-			background: url(./asset/img/bgimg.jpg) no-repeat fixed center center / cover ;
+			margin: 0;
+			padding: 0;
+		}
+		.content{
+			width: 100vw;
+			height: 100vh;
 			margin: 0;
 			padding: 0;
 			position: relative;
-			width: 100vw;
-			height: 100vh;
 			overflow: hidden;
 		}
-		.part{
-			width: 100%;
-			height: 100vh;
-			background: white;
-			position: absolute;
-			top: 0;
-			left: 0;
-			transition: top .8s ease;
-		}
-		.showIndex{
-			position: absolute;
-			top: 50%;
-			right: 20px;
-			transform: translateY(-50%);
-			list-style-type: none;
-			padding: 0;
-			margin: 0;
-			width: max-content;
-			height: max-content;
-			z-index: 15;
-		}
-		.showIndexNum{
-			width: 15px;
-			height: 15px;
-			border-radius: 50%;
-			margin-top: 20px;
-			border: 2px solid rgba(238, 238, 238, 0.9);
-			transition: transform .8s ease;
-		}
-		.showIndexNumNow{
-			transform: scale(2);
-		}
-		.partOne{
-			z-index: 10;
-			line-height: 50px;
-			font-size: 36px;
-			text-shadow: 2px 2px rgb(194, 194, 194);
-			text-align: center;
-		}
-		.partTwo{
-			z-index: 9;
-			top: 100vh;
-			background: none;
-			font-size: 3rem;
-			line-height: 100vh;
-			text-align: center;
-			color: rgb(9, 34, 70);
-			text-shadow: 2px 2px rgb(119, 119, 241);
-		}
-		.partThree{
-			z-index: 11;
-			top: 100vh;
-			line-height: 50px;
-			font-size: 36px;
-			text-shadow: 2px 2px rgb(196, 184, 184);
-			text-align: center;
-		}
 	</style>
+	<link rel="stylesheet" type="text/css" href="./asset/css/common.css" />
+	<!-- 预设的各种显示效果 -->
+	<link rel="stylesheet" type="text/css" href="./styles/blue.css" />
+	<link rel="stylesheet" type="text/css" href="./styles/black.css" />
+	<!-- 添加新功能的样式 -->
+	<link rel="stylesheet" type="text/css" href="./asset/css/additionalMethod.css" />
 </head>
 <body>
-	<div class="part partOne">
-		这是何沁的个人主页
-		<audio controls>
-			<source src="./asset/music/亚洲天使童声合唱团-友谊天长地久.mp3" type="audio/mpeg" />
-		</audio>
+	<div class="content black">
+		<div class="additionalMethod">
+			<div class="MP3player"></div>
+			<h1 class="pageTitle">这就是何沁</h1>
+			<div class="styleSelect" onclick="additionalMethod.changeStyle()"></div>
+		</div>
 	</div>
-	<div class="part partTwo">
-		星空之谜
-	</div>
-	<div class="part partThree">
-		还在建设中...
-	</div>
+<script src="./asset/js/common.js"></script>
+<script src="asset/js/additionalMethod.js"></script>
 <script>
-	var allpart = [];
-	var nowPart = 0;
-	var changeGap = 0;
-	var settings = {
-		bounceTime: 10,
-		indexColor: ['rgba(132, 185, 255,.8)','rgba(255, 125, 125,.8)','rgba(142, 233, 149,.8)','rgba(255, 184, 103,.8)','rgba(161, 161, 161,.8)','rgba(255, 172, 211,.8)','rgba(225, 126, 255,.8)']
-	}
+var data = {
+	styles:['black','blue']
+}
+window.onload = function(){
 	
-	function Part(index,element){
-		this.no = index;
-		this.part = element;
-
-		this.show = function(){
-			this.part.style.top = "0";
-		}
-		this.hidden = function(flag = 0){
-			var part = this.part;
-			if(flag){
-				part.style.top = "100vh";
-			}else{
-				part.style.top = "-100vh";
-			}
-		}
-	}
-
-	function showPart(flag = 0){
-		if(changeGap > 0){
-			changeGap --;
-			return;
-		}
-		changeGap = settings.bounceTime;
-		if(flag && nowPart < allpart.length-1){
-			var listIndexs = document.getElementsByClassName('showIndexNum');
-			toggleClass(listIndexs.item(nowPart),'showIndexNumNow');
-			allpart[nowPart++].hidden(!flag);
-			allpart[nowPart].show();
-			toggleClass(listIndexs.item(nowPart),'showIndexNumNow');
-		}else if(!flag && nowPart > 0){
-			var listIndexs = document.getElementsByClassName('showIndexNum');
-			toggleClass(listIndexs.item(nowPart),'showIndexNumNow');
-			allpart[nowPart--].hidden(!flag);
-			allpart[nowPart].show();
-			toggleClass(listIndexs.item(nowPart),'showIndexNumNow');
-		}
-	}
-
-	function toggleClass(element,className){
-		var classs = element.getAttribute('class').split(" ");
-		var index = classs.indexOf(className);
-		if(index >= 0){
-			classs.splice(index,1);
-		}else{
-			classs.push(className);
-		}
-		element.setAttribute('class',classs.join(" "));
-	}
-
-	window.onload = function(){
-		var parts = document.getElementsByClassName('part');
-		for(let i=0;i<parts.length;i++){
-			var part = new Part(i,parts.item(i));
-			allpart.push(part);
-		}
-		changeGap = settings.bounceTime;
-		var body = document.getElementsByTagName('body').item(0);
-		body.onmousewheel = wheelHander;
-    	body.addEventListener('DOMMouseScroll',wheelHander,false);
-
-		// 创建显示页码部分
-		var ul = document.createElement('ul');
-		ul.setAttribute('class','showIndex');
-		body.appendChild(ul);
-		for(let i=0;i<parts.length;i++){
-			var li = document.createElement('li');
-			li.setAttribute('class','showIndexNum');
-			if(i == nowPart)
-				toggleClass(li,'showIndexNumNow');
-			li.style.backgroundColor = settings.indexColor[i];
-			ul.appendChild(li)
-		}
-
-		function wheelHander(e){
-			oEvent = e || window.event;      	// 事件的兼容性写法
-			if(oEvent.wheelDelta){ 				// 非火狐
-				if(oEvent.wheelDelta > 0){  	// 向上滚动
-					showPart(0);
-				}else{							// 向下滚动
-					showPart(1);
-				}
-			}else if(oEvent.detail){
-				if(oEvent.detail > 0){ 			// 向下滚动
-					showPart(1);
-				}else{                       	// 向上滚动
-					showPart(0);
-				}
-			}
-			e.preventDefault();
-		}
-	}
+}
 </script>
 </body>
 </html>

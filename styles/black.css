@@ -1,0 +1,23 @@
+.black{
+    background-color: white;
+}
+.black .additionalMethod{
+    background-color: rgb(12, 12, 15);
+}
+.black .additionalMethod::after{
+    border-right-color: rgba(158, 158, 158, 0.568);
+}
+.black .additionalMethod .MP3player{
+    background-color:rgb(12, 12, 15);
+    background-image: url(../asset/img/music-red.png);
+    box-shadow: 0 0 0 5px red inset;
+}
+.black .additionalMethod .styleSelect{
+    background-color: rgba(126, 126, 126, 0.719);
+}
+.black .additionalMethod .styleSelect:hover{
+    background-color: rgba(56, 56, 56, 0.719);
+}
+.black .additionalMethod h1.pageTitle{
+    color: white;
+}
