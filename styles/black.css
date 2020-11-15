@@ -1,5 +1,5 @@
 .black{
-    background-color: white;
+    background-color: rgb(189, 189, 189);
 }
 .black .additionalMethod{
     background-color: rgb(12, 12, 15);
@@ -20,4 +20,10 @@
 }
 .black .additionalMethod h1.pageTitle{
     color: white;
+}
+
+
+.black .message .messageContent{
+    color: #333;
+    text-shadow: 2px 2px 3px rgb(255, 255, 255);
 }

@@ -1,5 +1,5 @@
 .blue{
-    background-color: white;
+    background-color: rgb(255, 252, 245);
 }
 .blue .additionalMethod{
     background-color: rgb(71, 121, 230);
@@ -20,4 +20,10 @@
 }
 .blue .additionalMethod h1.pageTitle{
     color: rgb(223, 255, 253);
+}
+
+
+.blue .message .messageContent{
+    color: rgb(20, 137, 204);
+    text-shadow: 2px 2px 3px rgb(255, 196, 148);
 }

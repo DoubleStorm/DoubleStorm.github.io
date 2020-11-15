@@ -2,3 +2,13 @@
     from {transform: rotate(0);}
     to {transform: rotate(-360deg);}
 }
+@keyframes fadeIn{
+    from{
+        transform: scale(.5);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1); 
+        opacity: 1;
+    }
+}

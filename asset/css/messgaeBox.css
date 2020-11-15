@@ -1,0 +1,30 @@
+.messageBox{
+    position: absolute;
+    z-index: 100;
+    top:0;bottom: 0;left: 0;right:0;
+    margin: auto;
+    transition: all 1.5s ease;
+}
+.messageBox.message{
+    width: max-content;
+    height: max-content;
+    max-width: 60%;
+    max-height: 200px;
+    user-select: none;
+}
+.messageBox.message .messageContent{
+    text-align: justify;
+    word-break: break-all;
+    text-shadow: 2px 2px solid transparent;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-indent: 2em;
+}
+.messageBox.fadeOutToRight{
+    left: 30%;
+    opacity: 0;
+}
+.messageBox.fadeOutToLeft{
+    left: -30%;
+    opacity: 0;
+}

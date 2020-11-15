@@ -20,11 +20,11 @@
 		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="./asset/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="./asset/css/messgaeBox.css">
+	<link rel="stylesheet" type="text/css" href="./asset/css/additionalMethod.css" />
 	<!-- 预设的各种显示效果 -->
 	<link rel="stylesheet" type="text/css" href="./styles/blue.css" />
 	<link rel="stylesheet" type="text/css" href="./styles/black.css" />
-	<!-- 添加新功能的样式 -->
-	<link rel="stylesheet" type="text/css" href="./asset/css/additionalMethod.css" />
 </head>
 <body>
 	<div class="content black">
@@ -33,15 +33,55 @@
 			<h1 class="pageTitle">这就是何沁</h1>
 			<div class="styleSelect" onclick="additionalMethod.changeStyle()"></div>
 		</div>
+		<!-- <div class="messageBox message">
+			<div class="messageContent">fadeOutToRight</div>
+		</div> -->
 	</div>
 <script src="./asset/js/common.js"></script>
-<script src="asset/js/additionalMethod.js"></script>
+<script src="./asset/js/messageBox.js"></script>
+<script src="./asset/js/additionalMethod.js"></script>
+<script src="./content/message.js"></script>
+<script src="./content/movie.js"></script>
 <script>
 var data = {
-	styles:['black','blue']
+	transitionTime: 1500,              // 默认动画过渡时间
+	transitionFlag: true,              // 表示是否结束过渡
+	styles: ['black','blue'],          // 网页主题样式
+	contents: ['message']              // 展示的日志类型列表
 }
+var variable = [];                     // 日志消息列表
+var contentIndex = 0;                  // 默认播放第 0 个日志
+class MessgaeBoxContent{
+	constructor(className,messageContent){
+		this.className = className;
+		this.messageContent = messageContent;
+	}
+}
+
 window.onload = function(){
-	
+	data.contents.forEach( x => {
+		downloadContent(x);
+	})
+	// console.log(variable)
+	messageBox.setContent(variable[0]);
+
+	document.addEventListener('keyup',changeContentListener);
+	document.addEventListener('keydown',changeContentListener);
+}
+function changeContentListener(e){
+	console.log(data.transitionFlag)
+	if(data.transitionFlag){
+		switch(e.keyCode){
+			case 37: messageBox.changeContent(0);break;
+			case 39: messageBox.changeContent(1);break;
+		}
+	}
+}
+function downloadContent(type){
+	var content = messageBox[type];
+	for(let x of content.content){
+		variable.push(new MessgaeBoxContent(type,x));
+	}
 }
 </script>
 </body>
